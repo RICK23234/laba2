@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker лаба</title>
+</head>
+<body>
+<main>
+    <p><b>ФИО: </b>Вересов Андрей Андреевич</p>
+    <p><b>GitHub: </b>RICK23234</p>
+    <p><b>Docker Hub: </b>ricksun123</p>
+
+    <button onclick="getApi()">Получить ответ API</button>
+    <pre id="result">Нажми на кнопку для проверки API.</pre>
+</main>
+
+<script>
+async function getApi() {
+    const result = document.getElementById("result");
+    try {
+        const response = await fetch("/api/");
+        result.textContent = await response.text();
+    } catch (error) {
+        result.textContent = "Ошибка: " + error.message;
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+services:
+  frontend:
+    build: .
+    image: ricksun123/front:v1
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+  api:
+    image: containous/whoami
+    expose:
+      - "80"
+
+  logger:
+    image: busybox
+    command: sh -c "while true; do date '+%Y-%m-%d %H:%M:%S' >> /data/log.txt; sleep 5; done"
+    volumes:
+      - logger-data:/data
+
+volumes:
+  logger-data:
